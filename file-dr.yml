@@ -1,0 +1,16 @@
+---
+- hosts: Webserver
+  become: yes
+  tasks:
+    - name: create file and folder
+      file:
+        path: /home/ansible/ansibleplabook.txt
+        owner: ansible
+        mode: 0775
+        state: touch
+    - name: create direcoty
+      file:
+        path: /home/ansible/playbooks
+        state: directory 
+      
+      

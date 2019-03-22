@@ -1,0 +1,43 @@
+---
+- hosts: Middleware
+  become: yes
+  tasks:
+  - name: "system check"
+    fail:
+      msg: " this is on ubuntu machine "
+    when:
+     - ansible_os_family == "windows"
+  - name: install apache2
+    apt:
+      name: apache2
+      update_cache: yes
+      state: present
+    notify:
+      - restart service
+  - name: allow security
+    ufw:
+      name: apache full
+      policy: allow
+  - name: install php
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - php
+      - php-mysql
+    notify:
+      - restart service
+  - name: info page copy
+    copy:
+      src: info.php
+      dest: /var/www/html/info.php
+    notify:
+      - restart service
+  handlers:
+  - name: restart service
+    service:
+      name: apache2
+      enabled: yes
+      state: restarted
+      
+

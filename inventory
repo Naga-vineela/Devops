@@ -1,0 +1,13 @@
+[Webserver]
+172.31.25.21
+localhost 
+
+
+[Middleware]
+172.31.19.157
+
+[DBServer]
+172.31.19.14
+
+[hostname]
+localhost

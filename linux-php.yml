@@ -1,0 +1,40 @@
+---
+- hosts: Webserver
+  become: yes
+  tasks:
+  - name: fail message
+    fail:
+      msg: "thisis for not for windows machines"
+    when:
+    - ansible_os_family == "windows"
+  - debug: 
+      msg: "starting installation"
+  - name: install httpd
+    package:
+      name: httpd
+      state: present
+    notify:
+    - service httpd restart
+  - debug:
+      msg: "httpd installed and starting with PHP"
+  - name: php installation
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - php
+      - php-mysql 
+      - php-pdo 
+    notify:
+    - service httpd restart
+  - name: info page copy
+    copy:
+      src: info.php
+      dest: /var/www/html/info.php
+    notify:
+    - service httpd restart
+  handlers:
+  - name: "service httpd restart"
+    service:
+      name: httpd
+      state: restarted

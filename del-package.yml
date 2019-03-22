@@ -1,0 +1,9 @@
+---
+- hosts: Webserver
+  become: yes
+  tasks:
+    - name: remove packade from comand line
+      yum:
+        name: "{{ package_name }}"
+        state: absent
+      

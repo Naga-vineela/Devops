@@ -1,0 +1,17 @@
+---
+- hosts: Webserver
+  become: yes
+  vars:
+    package_name: httpd
+  tasks:
+    - name: install web service
+      package:
+        name: "{{ package_name }}"
+        state: absent
+    #- name: start service
+     # service:
+      #  name: "{{ package_name }}"
+       # state: started
+        #enabled: yes
+       
+
