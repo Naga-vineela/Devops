@@ -1,0 +1,40 @@
+Install suitable version of java (openjdk 8/openjdk 9)
+Install suitable version of appserver(tomcat-8)
+find the directory to copy the java web app (.war)
+restart tomcat(appserver)
+
+java: sudo apt-get install openjdk-8-jdk
+tomcat: sudo apt-get install tomcat8 tomcat8-docs tomcat8-admin tomcat8-examples
+directory: /var/lib/tomcat7/webapps/
+restart: sudo /etc/init.d/tomcat8 restart
+
+
+---
+- hosts: Middleware
+  become: yes
+  tasks:
+    - name: install java8
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - openjdk-8-jdk
+        - tomcat8
+        - tomcat8-docs
+        - tomcat8-admin
+        - tomcat8-examples
+        - unzip
+      notify:
+        - restart service
+    - name: unzio gameoflife
+      unarchive:
+        src: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip
+        dest: /var/lib/tomcat8/webapps/
+        remote_src: yes
+  handlers:
+    - name: restart service
+      service:
+        name: tomcat8
+        status: restarted
+
+

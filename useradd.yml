@@ -1,0 +1,41 @@
+##required modifications on sudoers module
+- hosts: Webserver
+  become: yes
+  tasks:
+    - name: user creation
+      user:
+        name: "{{ user }}"
+        password: ansible
+        state: present
+    - name: change password authentication in sshd
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication.*no'
+        line: 'PasswordAuthentication=yes'
+      notify: restart_sshd
+    - name: add user to sudoers in redhat
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        insertafter: '^%wheel'
+        line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+      when: ansible_facts['os_family'] == "redhat"
+    - name: add user to sudoers for ubuntu
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        insertafter: '^%wheel'
+        line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+      when: ansible_facts['os_family'] == "ubuntu"
+    - name: copy ssh-key
+      authorized_key:
+        key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+        user: "{{ user }}"
+        state: present
+  handlers:
+    - name: restart_sshd
+      service:
+        name: sshd
+        state: restarted

@@ -1,0 +1,43 @@
+##  to configure ansible user and keybased authentication to use in ansible . 
+##Assumtions : all hosts should already have password authentication set to yes .
+## Below just added that module , to see how it works  . 
+##Also all systems to have root account and password same 
+---
+- hosts: Webserver
+  become: yes
+  tasks:
+    - name: user creation
+      user:
+        name: "{{ user }}"
+        password: ansible
+        state: present
+    - name: change password authentication in sshd
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication.*no'
+        line: 'PasswordAuthentication=yes'
+      notify: restart_sshd
+    - name: add user to sudoers
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        insertafter: '^%wheel'
+        line: '{{ user }} ALL=(ALL) NOPASSWD: ALL'
+    - name: copy ssh-key
+      authorized_key:
+        key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+        user: "{{ user }}"
+        state: present
+  handlers:
+    - name: restart_sshd
+      service:
+        name: sshd
+        state: restarted
+
+
+#execute:
+#ansible-playbook -i inventory, -u ansible -k copykey.yml
+#-k is to provide password on command prompt
+# to pass user name from command line: 
+#ansible-playbook -i inventory -u root -k -e "user=play" useradd.yml

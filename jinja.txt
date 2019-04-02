@@ -1,0 +1,8 @@
+## to find IP address of server and version
+Server name is :{{ ansible_nodename }}
+distribution: {{ ansible_distribution }}
+Node name :{{ ansible_nodename }}
+OS family :{{ ansible_os_family }}
+eth0 address :{{ ansible_eth0.ipv4.address }}
+Date: {{ ansible_date_time.date }}
+

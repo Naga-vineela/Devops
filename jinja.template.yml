@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: testing jinja template
+      template:
+        src: jinja.txt
+        dest: /home/ansible/playbooks
+        
