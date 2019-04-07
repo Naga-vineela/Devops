@@ -4,7 +4,7 @@
 #set env variables:
   #  vi ~/.bashrc
   # add below lines : 
-  #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  #export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"
 export PATH=${PATH}:${JAVA_HOME}/bin
 #git clone git://github.com/shopizer-ecommerce/shopizer.git
 #cd shopizer

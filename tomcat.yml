@@ -1,0 +1,71 @@
+---
+- hosts: tomcat
+  become: yes
+  tasks:
+  - name: install java
+    package:
+      name: default-jdk
+      state: present
+  - name: Set JAVA_HOME
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^JAVA_HOME'
+      line: 'JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"'
+  - name: group creation
+    group:
+      name: tomcat
+      state: present
+  - name: user creation
+    user:
+      name: tomcat
+      password: tomcat
+      state: present
+      group: tomcat
+      home: /opt/tomcat
+  - name: directory creation
+    file:
+      path: /opt/tomcat
+      state: directory
+      group: tomcat
+      owner: root
+
+
+  - name: get tomcat installables
+    unarchive:
+      src: http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz
+      dest: /opt/tomcat
+      remote_src: yes
+      extra_opts: [--strip-components=1]
+  - name: permission
+    file:
+      path: /opt/tomcat
+      state: directory
+      group: tomcat
+      owner: root
+      recurse: true
+      mode: 0750
+
+  - name: set permissions on folders
+    file:
+      path: "{{ item }}"
+      group: tomcat
+      owner: tomcat
+      mode: 0750
+      state: directory
+      recurse: true
+    with_items:
+      - /opt/tomcat/logs
+      - /opt/tomcat/temp
+      - /opt/tomcat/webapps
+      - /opt/tomcat/work
+  - name: copy tomcat file
+    copy:
+      src: tomcat.service
+      dest: /etc/systemd/system/tomcat.service
+  - name: service restart
+    systemd:
+      name: tomcat
+      daemon_reload: true
+      state: started
+      enabled: yes

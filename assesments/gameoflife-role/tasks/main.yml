@@ -1,0 +1,18 @@
+---
+# tasks file for gameoflife-role
+- apt:
+   name: "{{ item }}"
+   state: present
+  with_items:
+    - openjdk-8-jdk
+    - tomcat8
+    - tomcat8-docs
+    - tomcat8-admin
+    - tomcat8-examples
+    - unzip
+  notify:
+    - restart service
+- unarchive:
+   src: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip
+   dest: /var/lib/tomcat8/webapps/
+   remote_src: yes

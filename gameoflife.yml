@@ -5,7 +5,7 @@ restart tomcat(appserver)
 
 java: sudo apt-get install openjdk-8-jdk
 tomcat: sudo apt-get install tomcat8 tomcat8-docs tomcat8-admin tomcat8-examples
-directory: /var/lib/tomcat7/webapps/
+directory: /var/lib/tomcat8/webapps/
 restart: sudo /etc/init.d/tomcat8 restart
 
 
@@ -26,7 +26,7 @@ restart: sudo /etc/init.d/tomcat8 restart
         - unzip
       notify:
         - restart service
-    - name: unzio gameoflife
+    - name: unzip gameoflife
       unarchive:
         src: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip
         dest: /var/lib/tomcat8/webapps/
