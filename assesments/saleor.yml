@@ -1,4 +1,15 @@
 #https://docs.getsaleor.com/en/latest/gettingstarted/installation-linux.html
+# python 3.6
+#nodejs v10
+#postgresql v9.4 /apt-get install postgresql-9.4
+#/etc/apt/sources.list.d/pgdg.list
+# add line : deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+# wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+#sudo apt-get update 
+# sudo apt-get install postgresql-client-9.4 postgresql-9.4 postgresql-contrib-9.4 libpq-dev postgresql-server-dev-9.4
+# virtual env: python3 -m venv tutorial-env
+#Gtk+
+#secrete key: EhqTHY+ucS+V
 
 ---
 - hosts: saleor
@@ -18,5 +29,96 @@
       - libpangocairo-1.0-0
       - libgdk-pixbuf2.0-0
       - libffi-dev
-      - shared-mime-info
+      - shared-mime-info 
+      -  python3-venv
+  - name: install nodejs
+    get_url: 
+      url: https://deb.nodesource.com/setup_10.x 
+      dest: /opt 
+      mode: 755
+  - name: Setup Node.js
+    command: /opt/setup_10.x
+  - name: Install Node.js (JavaScript run-time environment)
+    apt: 
+      name: nodejs 
+      state: present
+  - name: postgresql-9.4 
+    blockinfile:
+      path: /etc/apt/sources.list.d/pgdg.list
+      content: deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+  - name: update key for SQL install
+    shell: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    notify: apt-get update
+  - name: install sql
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - postgresql-client-9.4 
+      - postgresql-9.4 
+      - postgresql-contrib-9.4 
+      - libpq-dev 
+      - postgresql-server-dev-9.4 
+  - name: clone git repo
+    git:
+      repo: https://github.com/mirumee/saleor.git
+      dest: /root
+      clone: yes
+  - name: create virtual env
+    command: virtualenv /root/saleor/saleorvenv -p python3 creates="/root/saleor/saleorvenv" 
+  - name: Install requirements
+    pip: 
+      requirements: /root/saleor/requirements.txt
+      virtualenv: /root/saleor/saleorvenv
+      virtualenv_python: python3
+  - name: activate Venv
+    shell: |
+      source /root/saleor/saleorenv/bin/activate 
+      export SECRET_KEY='saanvi-vihaa'
+  - name: postgres
+    become_user: postgres
+    command: 
+      psql 
+      #/password
+  - name: DB creation
+    postgresql_db:
+      name: saleor
+      password: saleor
+      role_attr_flags: SUPERUSER  
+  - name: local host psql salor password set
+    command: "{{ item }}"
+    with_items:
+      - psql -h localhost
+      - ALTER USER saleor with password 'saleor';
+      - exit
+      - psql -d postgres
+      - ALTER USER saleor WITH SUPERUSER;
+      - \q
+  - name: DB migratepy
+    django_manage:
+      app_path: /root/saleor
+      command: migrate
+      virtualenv: /root/saleor/saleorvenv
+  - name: npm install
+    command: npm install
+  - name: 
+  
+
+
+
+
       
+   
+   
+   
+   
+   
+   
+    name: apt-get update
+    apt: 
+      update_cache: yes
+  -
+      
+
+    
+    
