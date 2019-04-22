@@ -1,0 +1,16 @@
+git
+
+working tree- staging area- local repo 
+
+git add filename
+git commit -m "fmkd"
+
+git reset --hard 
+
+git add -u (for modified files)
+
+moving changes from stage - add and reset
+
+hashing: checksum
+git uses sha1 hash - commit is that
+git cat-file 

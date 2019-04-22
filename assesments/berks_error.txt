@@ -1,0 +1,182 @@
+PS D:\Devops\Chef\chef-starter\chef-repo\cookbooks\openmrs> berks install -d
+I, [2019-04-22T01:08:24.123270 #10664]  INFO -- : Reducing lockfile
+D, [2019-04-22T01:08:24.135271 #10664] DEBUG -- : Current lockfile:
+D, [2019-04-22T01:08:24.136271 #10664] DEBUG -- :
+D, [2019-04-22T01:08:24.138271 #10664] DEBUG -- :   DEPENDENCIES
+D, [2019-04-22T01:08:24.139271 #10664] DEBUG -- :
+D, [2019-04-22T01:08:24.141271 #10664] DEBUG -- :   GRAPH
+D, [2019-04-22T01:08:24.142271 #10664] DEBUG -- :
+D, [2019-04-22T01:08:24.144271 #10664] DEBUG -- : Unlocking dependencies no longer in the Berksfile
+D, [2019-04-22T01:08:24.145271 #10664] DEBUG -- : Removing transitive dependencies
+D, [2019-04-22T01:08:24.146271 #10664] DEBUG -- :   Checking openmrs (>= 0.0.0)
+D, [2019-04-22T01:08:24.148272 #10664] DEBUG -- :     Skipping (not graphed)
+D, [2019-04-22T01:08:24.150272 #10664] DEBUG -- : New lockfile:
+D, [2019-04-22T01:08:24.151272 #10664] DEBUG -- :
+D, [2019-04-22T01:08:24.154272 #10664] DEBUG -- :   DEPENDENCIES
+D, [2019-04-22T01:08:24.155272 #10664] DEBUG -- :
+D, [2019-04-22T01:08:24.157272 #10664] DEBUG -- :   GRAPH
+D, [2019-04-22T01:08:24.158272 #10664] DEBUG -- :
+Resolving cookbook dependencies...
+I, [2019-04-22T01:08:24.179273 #10664]  INFO -- : Checking if lockfile is trusted
+D, [2019-04-22T01:08:24.181273 #10664] DEBUG -- : Checking openmrs (>= 0.0.0)
+D, [2019-04-22T01:08:24.182273 #10664] DEBUG -- :   Not in lockfile - cannot be trusted!
+I, [2019-04-22T01:08:24.184274 #10664]  INFO -- : Installing from universe
+Fetching 'openmrs' from source at .
+D, [2019-04-22T01:08:24.278279 #10664] DEBUG -- :   Creating a resolver
+Fetching cookbook index from https://supermarket.chef.io...
+D, [2019-04-22T01:08:33.304795 #10664] DEBUG -- :   Adding explicit dependency on #<Berkshelf::CachedCookbook:0x070bf180
+>
+D, [2019-04-22T01:08:33.305795 #10664] DEBUG -- :   Starting resolution...
+I, [2019-04-22T01:08:36.025951 #10664]  INFO -- : Installing build-essential (8.2.1)
+D, [2019-04-22T01:08:36.029951 #10664] DEBUG -- :   Downloading build-essential (8.2.1) from https://supermarket.chef.io
+
+D, [2019-04-22T01:08:36.034951 #10664] DEBUG -- :     => #<Berkshelf::APIClient::RemoteCookbook:0x08a30240 @name="build-
+essential", @version="8.2.1", @attributes={"location_type"=>"opscode", "location_path"=>"https://supermarket.chef.io:443
+/api/v1", "download_url"=>"https://supermarket.chef.io:443/api/v1/cookbooks/build-essential/versions/8.2.1/download", "d
+ependencies"=>{"seven_zip"=>">= 0.0.0", "mingw"=>">= 1.1"}}>
+Installing build-essential (8.2.1)
+I, [2019-04-22T01:08:36.036952 #10664]  INFO -- : Installing ark (4.0.0)
+D, [2019-04-22T01:08:36.047952 #10664] DEBUG -- :   Downloading ark (4.0.0) from https://supermarket.chef.io
+D, [2019-04-22T01:08:36.048952 #10664] DEBUG -- :     => #<Berkshelf::APIClient::RemoteCookbook:0x08dafea8 @name="ark",
+@version="4.0.0", @attributes={"location_type"=>"opscode", "location_path"=>"https://supermarket.chef.io:443/api/v1", "d
+ownload_url"=>"https://supermarket.chef.io:443/api/v1/cookbooks/ark/versions/4.0.0/download", "dependencies"=>{"build-es
+sential"=>">= 0.0.0", "seven_zip"=>">= 0.0.0"}}>
+Installing ark (4.0.0)
+I, [2019-04-22T01:08:40.073182 #10664]  INFO -- : Installing mingw (2.1.0)
+D, [2019-04-22T01:08:40.079183 #10664] DEBUG -- :   Downloading mingw (2.1.0) from https://supermarket.chef.io
+D, [2019-04-22T01:08:40.084183 #10664] DEBUG -- :     => #<Berkshelf::APIClient::RemoteCookbook:0x088f0b78 @name="mingw"
+, @version="2.1.0", @attributes={"location_type"=>"opscode", "location_path"=>"https://supermarket.chef.io:443/api/v1",
+"download_url"=>"https://supermarket.chef.io:443/api/v1/cookbooks/mingw/versions/2.1.0/download", "dependencies"=>{"seve
+n_zip"=>">= 0.0.0"}}>
+Installing mingw (2.1.0)
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: already initi
+alized constant Archive::LIBPATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: previous defi
+nition of LIBPATH was here
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: already initi
+alized constant Archive::PATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: previous defi
+nition of PATH was here
+I, [2019-04-22T01:08:40.187189 #10664]  INFO -- : Installing openmrs (0.1.0)
+D, [2019-04-22T01:08:40.188189 #10664] DEBUG -- :   Already installed - skipping install
+Using openmrs (0.1.0) from source at .
+I, [2019-04-22T01:08:40.191189 #10664]  INFO -- : Installing seven_zip (3.1.0)
+D, [2019-04-22T01:08:40.197189 #10664] DEBUG -- :   Downloading seven_zip (3.1.0) from https://supermarket.chef.io
+D, [2019-04-22T01:08:40.202190 #10664] DEBUG -- :     => #<Berkshelf::APIClient::RemoteCookbook:0x0889b318 @name="seven_
+zip", @version="3.1.0", @attributes={"location_type"=>"opscode", "location_path"=>"https://supermarket.chef.io:443/api/v
+1", "download_url"=>"https://supermarket.chef.io:443/api/v1/cookbooks/seven_zip/versions/3.1.0/download", "dependencies"
+=>{"windows"=>">= 0.0.0"}}>
+Installing seven_zip (3.1.0)
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: already initi
+alized constant Archive::LIBPATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: previous defi
+nition of LIBPATH was here
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: already initi
+alized constant Archive::PATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: previous defi
+nition of PATH was here
+I, [2019-04-22T01:08:43.867399 #10664]  INFO -- : Installing windows (5.3.0)
+D, [2019-04-22T01:08:43.868399 #10664] DEBUG -- :   Downloading windows (5.3.0) from https://supermarket.chef.io
+D, [2019-04-22T01:08:43.869400 #10664] DEBUG -- :     => #<Berkshelf::APIClient::RemoteCookbook:0x08d66858 @name="window
+s", @version="5.3.0", @attributes={"location_type"=>"opscode", "location_path"=>"https://supermarket.chef.io:443/api/v1"
+, "download_url"=>"https://supermarket.chef.io:443/api/v1/cookbooks/windows/versions/5.3.0/download", "dependencies"=>{}
+}>
+Installing windows (5.3.0)
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: already initi
+alized constant Archive::LIBPATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: previous defi
+nition of LIBPATH was here
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: already initi
+alized constant Archive::PATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: previous defi
+nition of PATH was here
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: already initi
+alized constant Archive::LIBPATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:3: warning: previous defi
+nition of LIBPATH was here
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: already initi
+alized constant Archive::PATH
+C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:4: warning: previous defi
+nition of PATH was here
+TypeError unable to resolve type 'mode_t'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-1.10.0-x86-mingw32/lib/ffi/types.rb:69:in `find_type'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-1.10.0-x86-mingw32/lib/ffi/library.rb:585:in `find_type'
+
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-1.10.0-x86-mingw32/lib/ffi/library.rb:265:in `block in a
+ttach_function'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-1.10.0-x86-mingw32/lib/ffi/library.rb:252:in `each'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-1.10.0-x86-mingw32/lib/ffi/library.rb:252:in `attach_fun
+ction'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive/archive.rb:144:in `<
+module:C>'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive/archive.rb:4:in `<mo
+dule:Archive>'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive/archive.rb:3:in `<to
+p (required)>'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:117:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:117:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/ffi-libarchive-0.4.6/lib/ffi-libarchive.rb:55:in `<top (requ
+ired)>'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:65:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:65:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/mixlib-archive-0.4.19-universal-mingw32/lib/mixlib/archive/l
+ib_archive.rb:1:in `<top (required)>'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:65:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/site_ruby/2.5.0/rubygems/core_ext/kernel_require.rb:65:in `require'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/mixlib-archive-0.4.19-universal-mingw32/lib/mixlib/archive.r
+b:24:in `initialize'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/community_rest.rb:15:in `new'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/community_rest.rb:15:in `unpac
+k'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/community_rest.rb:94:in `downl
+oad'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/downloader.rb:75:in `try_downl
+oad'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/downloader.rb:41:in `block in
+download'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/downloader.rb:40:in `each'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/downloader.rb:40:in `download'
+
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/installer.rb:108:in `install'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/berkshelf-7.0.7/lib/berkshelf/installer.rb:181:in `block (2
+levels) in install_from_universe'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/safe_task_exec
+utor.rb:24:in `block in execute'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/synchronization/mutex_l
+ockable_object.rb:41:in `block in synchronize'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/synchronization/mutex_l
+ockable_object.rb:41:in `synchronize'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/synchronization/mutex_l
+ockable_object.rb:41:in `synchronize'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/safe_task_exec
+utor.rb:19:in `execute'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/ivar.rb:169:in `safe_ex
+ecute'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/future.rb:55:in `block
+in execute'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:348:in `run_task'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:337:in `block (3 levels) in create_worker'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:320:in `loop'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:320:in `block (2 levels) in create_worker'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:319:in `catch'
+        C:/opscode/chefdk/embedded/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.4/lib/concurrent/executor/ruby_thread_po
+ol_executor.rb:319:in `block in create_worker'
+PS D:\Devops\Chef\chef-starter\chef-repo\cookbooks\openmrs>
+
+
+
+
+
+
+
+
+
+
+
+
+

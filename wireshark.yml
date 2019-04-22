@@ -20,3 +20,26 @@ $ sudo apt-get install wireshark
 $ sudo yum install wireshark wireshark-qt wireshark-gnome
 
 ##
+
+---
+hosts: all
+become: yes
+tasks: 
+  - name: apt update
+    apt:
+      update_cache: yes
+    when: ansible_os_family == "ubuntu"
+  - name: repo 
+    apt_repository:
+      repo: ppa:wireshark-dev/stable
+    when: ansible_os_family == "ubuntu"
+  - name:
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - bison
+      - flex
+      - wireshark
+
+
