@@ -1,0 +1,32 @@
+---
+- hosts: petclinic 
+  become: yes
+  tasks:
+  - name: install java8,tomcat8,unzip
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - default-jdk
+      - tomcat8
+      - unzip
+  - name: Set JAVA_HOME environemnt variable
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^JAVA_HOME'
+      line: 'JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"'
+  - name: create petclinic folder
+    file:
+      path: /petclinic
+      state: directory
+    
+  - name : copy .jar file from the jenkins node 
+     # synchronize: src=/home/jenkins/workspace/petclinic/target/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar dest=/petclinic
+      shell: scp jenkins@130.61.19.198:/home/jenkins/workspace/petclinic/target/spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar /petclinic 
+  - name: run jar file
+      shell: java -jar spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar
+      args:
+        chdir: /petclinic
+
+    

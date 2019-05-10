@@ -1,0 +1,51 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: mynewkeypair # key pair name
+  region: ap-south-1 # region code of aws
+  availability_zone: ap-south-1b # availability_zone 
+  subnet_id: subnet-26c84f6a # subnet-id noted from above steps
+  instance_type: t2.micro # as it is free instance type
+  security_group_ids: ["sg-08214c50f3c724be7"]
+
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+transport:
+  ssh_key: ./mynewkeypair.pem # relative path to pem file
+  connection_timeout: 10
+  connection_retries: 5
+  
+
+platforms:
+  - name: ubuntu-16.04
+    driver:
+      image_id: ami-0a574895390037a62 # image id of ubuntu
+    transport:
+      username: ubuntu # username from ami-id
+  - name: rhel
+    driver:
+      image_id: ami-5b673c34 # image id of rhel
+    transport:
+      username: ec2-user # username from ami-id
+  
+
+
+suites:
+  - name: default
+    run_list:
+      - recipe[lamp_stack::apache]
+      - recipe[lamp_stack::php]
+      - recipe[lamp_stack::phpinfo]
+      - recipe[lamp_stack::mysql]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:

@@ -1,0 +1,69 @@
+git
+
+working tree- staging area- local repo 
+
+git add filename
+git commit -m "fmkd"
+
+git reset --hard 
+
+git add -u (for modified files)
+
+moving changes from stage - add and reset
+
+hashing: checksum
+git uses sha1 hash - commit is that
+git cat-file -p <commitid>
+git knows 2 things - tree and blob
+
+
+1st git .. then chef
+
+
+Diggi@Diggi-PC MINGW32 /d/git test (master)
+$ git add vini
+warning: LF will be replaced by CRLF in vini/work.
+The file will have its original line endings in your working directory
+
+Question : 
+post merging , cant we go back to previous state?
+after 
+
+
+----------------------------------------------------
+Diggi@Diggi-PC MINGW32 /d/git test/viha (master)
+$ git checkout 802e80cc1732a43b828fd6b43195173e844e10b0
+Note: checking out '802e80cc1732a43b828fd6b43195173e844e10b0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 802e80c 1st commit with 2 folders
+
+-------------------------------------
+Diggi@Diggi-PC MINGW32 /d/git test ((c97d9f1...))
+$ git checkout test-branch
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  c97d9f1  added file
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> c97d9f1
+
+Switched to branch 'test-branch'
+Your branch is up to date with 'origin/test-branch'.
+
+bcc297a367c08be59c0b650d1ef2ccd6be629f70
+
+
+
+
