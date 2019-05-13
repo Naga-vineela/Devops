@@ -5,14 +5,14 @@
         "availability_domain": "LKAS:EU-FRANKFURT-1-AD-2",
         "region": "eu-frankfurt-1",
         "base_image_ocid": "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaaxk6mpcucrsw6kuw6qksyrrl6kffvi52zqau2t245kanptwp6vcia",
-        "compartment_ocid": "ocid1.compartment.oc1..aaaaaaaa76vff3fr7inzfn6bggrbbfxbll64ozqf4smpyiy5zkt275v223aa",
+        "compartment_ocid": 
         "ssh_username": "opc",
         "shape": "VM.Standard2.1",
         "subnet_ocid": "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaasue5w3giwqmimk6lhwexofgzldnemlokux4paylk6xmfv3gsppeq",
-        "fingerprint": "2f:f4:60:cd:70:2d:55:0a:da:03:a0:dc:b3:56:e8:9a",
-        "user_ocid": "ocid1.user.oc1..aaaaaaaabm2jrtkbxqcvxriu43ekupvinojwhu7vld2jgapywgji4iwzaz2q",
-        "tenancy_ocid": "ocid1.tenancy.oc1..aaaaaaaaxduoaee2sw5l5igkeeyslivc5ha6txbv5uambs4fnzduifyutzpa",
-        "key_file": "~/.oci/oci_api_key.PEM"
+        "fingerprint": 
+        "user_ocid": 
+        "tenancy_ocid": 
+        "key_file": 
 
          }
     ]
