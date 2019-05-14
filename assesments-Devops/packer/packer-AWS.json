@@ -2,7 +2,7 @@
     "builders": [
         {
             "type": "amazon-ebs",
-            "access_key": "AKIA44QZT5HQO33RNLNJ",
+            "access_key": "****",
             "ami_name": "packerAWS",
             "instance_type": "t2.micro",
             "region": "ap-south-1",
