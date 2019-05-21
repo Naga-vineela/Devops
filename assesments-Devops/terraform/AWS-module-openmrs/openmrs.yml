@@ -1,0 +1,84 @@
+# installation steps as per https://wiki.openmrs.org/display/docs/Installing+OpenMRS
+
+---
+- hosts: 127.0.0.1
+  become: yes
+  tasks:
+  - name: install firefox,java8,tomcat8,unzip
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - firefox
+      - default-jdk
+      - tomcat8
+      - unzip
+
+  - name: Set JAVA_HOME environemnt variable
+    lineinfile:
+      dest: /etc/environment
+      state: present
+      regexp: '^JAVA_HOME'
+      line: 'JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre"'
+  - name: tomcat8 user.xml file update
+    blockinfile:
+      path: /etc/tomcat8/tomcat-users.xml
+      marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+      insertbefore: "</tomcat-users>"
+      content: |
+        <role rolename="tomcat"/>
+        <role rolename="admin"/>
+        <role rolename="manager"/>
+        <role rolename="manager-gui"/>
+        <user name="admin" password="password" roles="tomcat,admin,manager,manager-gui"/>
+
+  - name: create folder and set permission
+    file:
+      path: /usr/share/tomcat8/.OpenMRS
+      state: directory
+      group: tomcat8
+      owner: tomcat8
+      recurse: true
+      mode: 0750
+    notify:
+      - service start
+      - service stop
+      - service restart
+  - name: mysql install
+    package:
+      name: mysql-server
+      state: present
+  - name: create openrms folder
+    file:
+      path: /var/lib/tomcat8/webapps/openmrs
+      state: directory
+  - name: get war fle
+    get_url:
+      url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_2.2.0/openmrs.war
+      dest: /tmp
+      mode: 0755
+  - name: unzip war file and copy to webapps dir
+    unarchive:
+      src: /tmp/openmrs.war
+      dest: /var/lib/tomcat8/webapps/openmrs/
+      remote_src: yes
+     # extra_opts: [-d]
+    notify:
+      - service restart
+  handlers:
+  - name: service start
+    systemd:
+      name: tomcat8
+      state: started
+      enabled: yes
+  - name: service stop
+    systemd:
+      name: tomcat8
+      state: stopped
+      enabled: yes
+  - name: service restart
+    systemd:
+      name: tomcat8
+      state: restarted
+      enabled: yes
+

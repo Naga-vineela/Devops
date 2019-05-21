@@ -24,9 +24,16 @@ resource "azurerm_virtual_machine" "TFVM" {
     
     provisioner "local-exec" {
     command = "echo ${azurerm_virtual_machine.TFVM.private_ip} >> private_ips.txt"
+        
    
     }
     
+
+}
+
+output "webip"{
+    value = "${azurerm_virtual_machine.TFVM.id}"
+    description = "The public IP address of the main server instance."
 
 }
 
