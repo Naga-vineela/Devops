@@ -1,0 +1,307 @@
+which $SHELL
+#!/bin/bash
+echo "Hello , welcome to hyderabad"
+echo $(ls) # get output in single line
+echo "$(ls)" # get output in 2 lines
+echo '$(ls)' #shous OP as $(ls)
+
+______________________________________
+
+export PATH=${PATH}:/home/user/bin
+
+to have user scripts run from any whee , define path(where ur scripts are ) as environment variable. 
+
+________________________________________________________
+
+$(ls) and "$(ls)" are same .
+------------------------
+x=45
+echo "$x"
+echo "${x}"
+
+to store value in variable is volatile 
+u can save in file using > output.txt
+
+if we need to display value of command then it should be in ()
+
+x=$(ls)
+
+echo "$x"
+or
+echo "$(ls)"
+
+echo[options] string/$variable/$(command)
+
+-n = cusor will not be sent to next line 
+-e = used to print escaped or special chr . like \n is next line , \b         will delete one posision bacward , 
+        \r post value of /r will be replaced from starting . 
+        /t to horizontal tab
+        /v vertical tab
+        // escape option like if we give ///n - cursor will not go to           next line 
+
+
+echo -e "name: \n age: "
+echo -e "\033[92mThis is a colour\033[0m"
+_____________________________________________________
+to comment 
+<<mycomp
+sdjvsdvndsmv
+nlvnls
+mycomp
+
+______________________________________________________
+
+date +"%Y-%m-%d"
+to save to variable x=$(date +"%Y-%m-%d")
+ls >> x.log
+
+______________________-
+user defined - sys defined variables - have other special variable . 
+#env
+# printenv
+# set
+all these give sys defined variables - they are always in CAPS/ 
+echo $SHELL
+echo $OSTYPE
+echo $USER
+
+echo $? - is special variable it gives status of previously executed command . gives 0 if is successful and some error num if it failed . 
+
+
+
+
+
+
+_________________________________________________________
+
+input/output command of shell 
+--------------------------------
+echo to display output- output commad
+read is input comand 
+(command line argumenrs as input )
+
+read -p "enter name:" web_server
+echo "$web_server"
+
+Default read variable is REPLY
+read -p "enter name:"
+echo "$REPLY"
+
+
+Default value to variable
+-------------------------
+read -e -i "124" "enter num :" m_num
+echo "ur num : $"m_num"
+
+O/P :  enter num : 124 # u need to change it if u need to pass some other num . 
+
+to set time out for read :
+---------------------------
+-t 3 
+read -t 3 -p ""
+
+read multiple values :
+--------------------
+read -p "enter num1 and num2" num1 num2 
+
+how to read password 
+---------------------
+read -p "enter ur password" password
+to not see passwd
+echo "enter passwd: "
+read -s passwd
+
+_____________________________________________________________________
+Arthematic Ops
+----------------
+
+integer/float
+for integer 
+add=$((a+b))
+
+for float use 
+add=`expr "$a + $b"|bc
+div=`expr "scale=3;$a / $b"|bc -l`  # to give float values for output
+bc - gives float , float gives how many values after . 
+
+div=`expr "scale=3;4 / 5"|bc -l`
+
+bc is bash calculator - if it is not there we need to install bc calculator . 
+
+
+_____________________________________________________________________
+
+Menu Drive arth cal 
+--------------------
+
+case $ch in 
+  1) add=$((a+b))
+     echo $add
+     ;;
+  2)
+  3)
+*) echo "sorry op invalid"
+esac
+
+
+_________________________________________________
+printf 
+--------
+%d %s %f are format specifiers 
+spaces are format modifiers
+
+x=56
+printf "%d/n" "this is valure of x=" "$x"
+
+to print with space 
+printf "%40s/n" "hello" #prints to right leaving 50 spaces
+-40 # prints to left
+* # to use variable fo r num of spaces eg:
+var=56
+printf "%*s/n" "var" "hello" #56 spaces are printed , can change the 56 values 
+
+x=4.56743
+printf "%.2f/n" "$x" #prints 4.56 2 decimals
+__________________________________________________________
+special Variables
+------------------
+
+echo "$0 " - file name of current script
+echo "$4" - 4th passed command line argument . while executing script , if passing any command line arguments , 4th value is printed
+$# -- no of arguments passwd to script
+$@/$* - all the cmd line args passwd to the script
+$? - last command if success gives 0 , fails gives doem num 
+$$ - process id of the current shell
+
+$! process num of last background num
+$_ - last cmnd line argument of previous cmnd . 
+
+Provide input to the script using cmnd line args 
+in script
+a=$1
+b=$2
+
+c=$((a+b))
+echo "$c"
+
+./add.sh 3 4 # 3 and 4 are taken asw cmnd line args and passwd to a and b . 
+
+__________________________________________________________________________-
+
+String operation:
+-------------------
+
+str="hello world"
+echo "${str}"
+to print length of the string use # like below
+echo "${#str}"
+
+if we want to save it in variable
+var=$(echo "${#str}")
+
+concatination
+---------------
+str2="hello"
+str3="$str $str2"
+echo "${str3}"
+
+
+convert lower to upeer
+----------------------
+echo "${str^^}"
+upper to lower
+
+echo "${str,,}"
+
+
+index values
+------------
+echo "${str:position:len}
+
+echo "${str:1} - will display ello world
+
+echo "${str:3:6}"  ---lo will display 3rd to 5
+
+string ops on path
+----------------------
+
+path_java="/var/lib/usr/java8.xyz"
+
+echo "${path_java%xyz}" - to delete end of matched substring
+echo "{path_java#/var/lib} - to dele starting od matchd substring
+
+dirname $path_java - gives path 
+basename $path_java - gives java8.xyz
+
+to delete all after . 
+"{path_java%.*}"  end
+from starting
+"{path_java#.*}" 
+
+_________________________________________________________
+Conditional Statements
+--------------------------
+
+if [ $cmnd_line -el 2]
+then
+   vfv
+   vfvd
+   svfv
+fi
+
+if [ "${action}" == "stop"]
+then
+ fg
+ df
+fi
+
+if [true]
+then
+
+----------------------
+if [ expression]
+then
+
+  elif [expression]
+  then
+
+  elif [expression]
+  then
+ 
+  else
+
+fi
+
+------------------------
+
+operators to be used in 'if' statements
+---------------------------------------
+file test ,comparision,logical operator
+
+-d file   if file is a directory
+-f file   if file is file
+-e file   if file exists
+-r , -w,-x file  readable writable ,executable
+-s    if file has non zero length
+
+comparision:
+integers:
+-eq #equals to 
+-ne #not equala
+-lt #lessthan
+-gt #greater than   
+-le #lesst than equal
+-ge #greater than equal
+
+strings:
+==  #equlals
+!=
+-n string # true if string is non zero
+-z string # true if string is zero
+
+logical:
+or  -o or ||
+and -a or &&
+not  !
+
+to combine 2 or more operators like file test and string these operators are used
