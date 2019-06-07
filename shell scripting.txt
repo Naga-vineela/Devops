@@ -305,3 +305,359 @@ and -a or &&
 not  !
 
 to combine 2 or more operators like file test and string these operators are used
+__________________________________________________________________________
+
+Loops
+
+for each in $(seq 1 20)
+do 
+  block of code 
+done
+
+LOOPS:
+For
+while
+until
+select
+
+sequence of numbers
+for x in $(seq 1 100)
+do
+  if $each
+
+seq command
+------------
+seq 1 20
+seq 1 2 20 # it will step 2
+seq 10 -1 1 # print in reverse order
+
+Brace
+-----
+echo {1..10} #prints 1 to 10
+echo {1..10..2} # step 2 
+
+
+for x in  1 2 3 4 
+
+##can also be written as below ####
+
+for((initialization; condition ; increment/decrement))
+for ((i=0 ; i <10 ; i++))
+do 
+
+done
+
+Infinity loop
+-----------
+for (;;)
+do 
+ echo ("hello")
+done
+
+
+for file in $(ls)
+do 
+echo ("my file is $file : $(cat $file|head -1)")
+
+_____________________________________________
+
+While Loop
+---------------
+initialization 
+while (condition)
+do 
+  block
+done
+
+
+i =1
+while [$i -le 10]
+do
+ echo ($i)
+ i = $((i+1))
+then
+
+inifinit while
+-------------
+
+while :
+do 
+
+done
+
+<<<<or>>>
+while true
+do 
+
+done
+
+while are used to read line from file
+------------------------------------
+while read line # here line is variable , u can use any thing
+do 
+
+done <file
+
+
+________________________________________________________________________________
+
+
+Until Loop
+----------
+
+same as while loop
+syntax:
+
+initialization
+until [condition]
+do
+
+done
+
+it executes when condition is false
+
+
+_________________________________________________________________________
+
+Select Loop
+-----------
+
+Menu Driven script
+
+
+select with case
+
+select opt in add sub mul div quit
+do
+  case $opt in 
+  add)
+     read -p "1st num: " num1
+     read -p "2nd num: " num2
+     echo "add: $((num1+num2))
+    ;;
+  sub)
+        read -p "1st num: " num1
+     read -p "2nd num: " num2
+     echo "add: $((num1-num2))
+     ;;
+
+  mul)
+   ;;
+  quit)
+      exit 0
+   ;;  
+  *)
+    echo ("invalid opt")
+   ;;
+esac
+done
+
+
+----------------------------
+
+Break and continue
+------------------
+
+if condition is met break will stop the loop
+continue skips the rest of lines in the code n continues with next iteration
+
+
+________________________________________________________________________
+
+PS- special environment variables . 
+
+ps1 is our command prompt -- prompt env variable
+to change it u need to run 
+
+ps1="\u@\h \w>
+export ps1="[\t ==> \u@\h \w>]"
+permanent modifications to be done on .bash_profile or .bashrc file
+
+
+ps2 is to run  long command in breaks by using \
+ps2 = >
+to change it 
+ps2 = "enter rest od cmnD"
+
+ps3 - is used in select loop script
+ps3="enter 1to 5 options"
+
+PROMPT_COMMAND- it will only take command as a value .
+PROMPT_COMMAND="date"
+before displaying ps1 prompt it will display content of prompt_comment
+
+if u want to display user who loggedin in everytime 
+PROMPT_COMMAND="echo -n $(date)" - on a single line
+
+______________________________________________________________________________
+
+WORKING WITH FILES
+------------------
+
+want to check each line and perform some action
+for loop reads word by word
+so use while loop to read files
+
+
+while IFS=" " read line
+do 
+ echo $line
+ sleep 1
+done <filename>
+
+IFS - internal field seperator which is space \n
+it will throw error if there is space on the first line
+
+while IFS=" " read line1 line2
+do 
+ echo $line
+ sleep 1
+done <filename>
+
+1st value is assigned to line1 and whole other to line2
+
+IFS is field seperator as per the file , if it is csv , will be seperator
+
+___________________________________________________________________________________________
+
+Redirection of files
+
+ls > out.txt
+
+old data is erased and new is added if we reuse the same name
+
+if we use >> then current output is append to the file  
+ls >> out.txt
+
+cat < out.txt is same as cat out.txt ## input redirection symbol
+
+
+File Descriptors use with redirection symbols
+0 --> STDIN
+1 --> STDOUT
+2 -->STDERR
+
+
+dated 1>newdate.tst 2>dateerr.txt
+if success it goes to newdate and err goes to err file
+
+to nullifie the error 2>/dev/null 
+
+
+to store in single file 
+
+
+date 1>out.txt 2>&1
+
+to permanetly store 
+in file mention 
+exec 1 >> out.log 
+exec 2 >>tomcaterr.log
+
+for all the logs it will redirect to out.log
+
+for input
+----------
+exec 0<<filename>
+while read line
+do 
+
+
+
+no need to give file name afte done . 
+
+
+________________________________________________________________________________-
+
+Array
+-----
+
+x ={4 ,5 ,6, "rger" , 5 , "egr rg"]
+
+to display all values
+echo "${x[*]}"
+one value
+echo "${x[2]} #O/P is 6
+echo "${x[@]:2} #from 2nd index to last
+
+read -a my_array # to read array valus from cmnd line.
+
+Add and element to array
+----------------------------
+unset is used to remove value to variale
+x=3
+unset x
+
+to Add value to array
+x=("${x[@]}" "hello")
+
+remove array
+unset x[2]
+unset x  # to remove all values
+
+Reading array values with loop
+-----------------------------
+ python
+for i in range(1 ,5);
+ print a[i]
+
+
+
+for each in ${list[@]}
+do 
+ echo $each
+done
+
+creating an array with command
+---------------------------------
+
+array_date=($(date)) #need to give xtra ()
+lenght of array 
+echo "${#array_date[@]}
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
